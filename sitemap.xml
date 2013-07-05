@@ -1,12 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://blog.lakenen.com/2013/07/05/node-mans-land/</loc>
+        <lastmod>2013-07-05T08:55:34-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.lakenen.com/about/</loc>
+        <lastmod>2013-07-05T08:46:53-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.lakenen.com/blog/archives/</loc>
-        <lastmod>2013-07-03T15:54:45-07:00</lastmod>
+        <lastmod>2013-07-05T08:55:34-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.lakenen.com/</loc>
-        <lastmod>2013-07-03T15:54:45-07:00</lastmod>
+        <lastmod>2013-07-05T08:55:34-07:00</lastmod>
     </url>
     <url>
         <loc>http://blog.lakenen.com/robots.txt</loc>
