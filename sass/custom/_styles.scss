@@ -1,2 +1,50 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+
+//-------- Sidebar Icons ---------//
+/*! Icons are CC-Attrib; attrib to http://fairheadcreative.com */
+.icon-link {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: 6px 2px 0 0;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.github-link {
+  background: url(../images/webicon-github.svg) left center no-repeat;
+  background-size: 48px auto;
+}
+.lte-ie8 .github-link {
+  background: url(../images/webicon-github.png) left center no-repeat;
+}
+
+.twitter-link {
+  background: url(../images/webicon-twitter.svg) left center no-repeat;
+  background-size: 48px auto;
+}
+.lte-ie8 .twitter-link {
+  background: url(../images/webicon-twitter.png) left center no-repeat;
+}
+
+.stackoverflow-link {
+  background: url(../images/webicon-stackoverflow.svg) left center no-repeat;
+  background-size: 48px auto;
+}
+.lte-ie8 .stackoverflow-link {
+  background: url(../images/webicon-stackoverflow.png) left center no-repeat;
+}
+
+//-------- Post Styles ---------//
+.entry-content {
+  font-size: 0.9em;
+  ul, ol {
+    padding-left: 30px;
+  }
+}
+
+.entry-title {
+  font-size: 2em;
+}
