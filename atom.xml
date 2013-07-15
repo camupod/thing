@@ -4,7 +4,7 @@
   <title><![CDATA[Cameron Lakenen]]></title>
   <link href="http://blog.lakenen.com/atom.xml" rel="self"/>
   <link href="http://blog.lakenen.com/"/>
-  <updated>2013-07-15T11:34:19-07:00</updated>
+  <updated>2013-07-15T11:58:35-07:00</updated>
   <id>http://blog.lakenen.com/</id>
   <author>
     <name><![CDATA[Cameron Lakenen]]></name>
@@ -175,9 +175,9 @@
 
 <p>The Page class inserts layer divs into a jQuery-wrapped container element, and exposes a rotate(dx, dy, dz) method, which rotates the page in 3D space. Each layer div is positioned LAYER_SPACING apart on the z axis. From here, it’s easy to take it a step further, and add mouse/touch controls for rotating the page.</p>
 
-<h5><a href="http://web.crocodoc.com/blog-demos/demo1.html">Demo #1: The Page</a></h5>
+<h5><a href="http://lakenen.com/blog-demos/demo1.html">Demo #1: The Page</a></h5>
 
-<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo1.html"></iframe></p>
+<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo1.html"></iframe></p>
 
 
 <div><script src='https://gist.github.com/5251877.js'></script>
@@ -190,9 +190,9 @@
 
 <p>In browsers that support CSS transitions, adding transitions is very simple, and done almost entirely in CSS. The JavaScript changes are mainly adding and removing CSS classes. We can also add a nice implode/explode effect.</p>
 
-<h5><a href="http://web.crocodoc.com/blog-demos/demo2.html">Demo #2: Transitions</a></h5>
+<h5><a href="http://lakenen.com/blog-demos/demo2.html">Demo #2: Transitions</a></h5>
 
-<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo2.html"></iframe></p>
+<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo2.html"></iframe></p>
 
 
 <div><script src='https://gist.github.com/5251958.js'></script>
@@ -215,9 +215,9 @@
 
 <p>With Firefox support handled, it’s time to tackle IE 9. Even though IE 9 can’t render matrix3d values in CSS, we can compute them in JavaScript and truncate a few numbers… which is exactly what we did. And it looks way better than you might expect! Check out the demo below to compare how it looks in IE 9 (which we’ll call affine mode) vs proper 3D mode.</p>
 
-<h5><a href="http://web.crocodoc.com/blog-demos/demo3.html">Demo #3: Affine Mode</a></h5>
+<h5><a href="http://lakenen.com/blog-demos/demo3.html">Demo #3: Affine Mode</a></h5>
 
-<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo3.html"></iframe></p>
+<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo3.html"></iframe></p>
 
 
 <p><em>(NOTE: can’t tell the difference between the two modes? you’re probably using IE 9. No? It’s also possible that hardware acceleration is disabled on your machine, which you can check in <strong>chrome://gpu/.</strong>)</em></p>
@@ -237,9 +237,9 @@
 
 <p>After a bit of (failed) experimenting, I realized that, out of the box, SVG does not support CSS transforms with perspective. My solution was to load the SVG with AJAX (really CORS from AWS S3, which required yet <a href="https://gist.github.com/camupod/5252086">another IE shim</a>, and a cache-related hack for Chrome), fix linked assets (Crocodoc SVG links to assets relatively), apply a filter to split the SVG into several distinct SVG objects, and embed each object using HTML5 Inline SVG in a separate div elements. Voila, we have our layers!</p>
 
-<h5><a href="http://web.crocodoc.com/blog-demos/demo4.html">Demo #4: SVG Layers</a></h5>
+<h5><a href="http://lakenen.com/blog-demos/demo4.html">Demo #4: SVG Layers</a></h5>
 
-<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo4.html"></iframe></p>
+<p><iframe class="demo" src="http://lakenen.com/blog-demos/demo4.html"></iframe></p>
 
 
 <div><script src='https://gist.github.com/5252136.js'></script>
@@ -250,7 +250,7 @@
 
 <p>Since the SVG is now contained in HTML elements, we can apply CSS 3D transforms to the containers, and everything works swimmingly. Except in IE 9. Yep, IE 9 supports inline SVG, but it doesn’t support document.importNode(), which is necessary for creating the inline SVG in the first place. I found a <a href="http://stackoverflow.com/a/9883539/494954">nice shim</a>, which I <a href="https://gist.github.com/camupod/5165619#file-importnode-js">modified slightly</a>, because it was producing <a href="http://stackoverflow.com/questions/14593520/ie9-importing-inline-svg-image-elements-broken">some issues</a> with namespaced attributes.</p>
 
-<p>If you’re interested, also check out demos <a href="http://web.crocodoc.com/blog-demos/demo5.html">5</a>, <a href="http://web.crocodoc.com/blog-demos/demo6.html">6</a>, and <a href="http://web.crocodoc.com/blog-demos/demo7.html">7</a> (warning, you might need a fast machine).</p>
+<p>If you’re interested, also check out demos <a href="http://lakenen.com/blog-demos/demo5.html">5</a>, <a href="http://lakenen.com/blog-demos/demo6.html">6</a>, and <a href="http://lakenen.com/blog-demos/demo7.html">7</a> (warning, you might need a fast machine).</p>
 
 <p><em>Note: I also ran into some very troubling issues with Firefox.  Rotating the 3D demo would reproducibly cause a kernel panic on my MBP (Retina, Mid 2012). I unfortunately haven’t been able to create a reduced test case for this, but I’ll be sure to post about it when I do. It has something to do with applying 3D transforms to elements (possibly specifically SVG) in a overflow:hidden container.</em>
    </p>
