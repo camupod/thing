@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: HTML | Cameron Lakenen]]></title>
+  <link href="http://blog.lakenen.com/categories/html/atom.xml" rel="self"/>
+  <link href="http://blog.lakenen.com/"/>
+  <updated>2013-07-15T11:10:19-07:00</updated>
+  <id>http://blog.lakenen.com/</id>
+  <author>
+    <name><![CDATA[Cameron Lakenen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[3D-ifying Documents Using CSS Transforms]]></title>
+    <link href="http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/"/>
+    <updated>2013-03-26T15:31:00-07:00</updated>
+    <id>http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms</id>
+    <content type="html"><![CDATA[<p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms">Crocodoc blog</a>. I am reposting here for posterity.</strong></p>
+
+<p>We recently launched a preview of Crocodoc’s newest document to HTML converter. If you haven’t checked it out yet, go play with our <a href="http://preview.crocodoc.com/">preview</a> and see how we’re converting the pages of your documents to embeddable SVG and HTML.</p>
+
+<p>What does the new converter mean to those of you building web applications using Crocodoc? Simple: your documents will load faster, look sharper, and be much easier to customize. Our preview page is full of interactive examples designed to help provide inspiration and showcase what is possible with the new Crocodoc: everything from a 3D page demo, showing off the many layers in a document, to a magnified view of an uploaded document, and a thumbnail that expands into a full-size inline document.</p>
+
+<p>For this post, I’d like to focus on the 3D demo. I’ll explain how it was built, the various issues we ran into, and the workarounds we used to fix them.</p>
+
+<p><em>Note: the demos in this blog post require IE 9+ (preferably 10), Firefox, or any WebKit browser. If you’re on a mobile device, you might need to click the open in new page button to view the demos properly.</em></p>
+
+<h2>Building the 3D Demo</h2>
+
+<p>The Crocodoc 3D Demo separates a document into discrete layers, which you can rotate so that you can see how the document is constructed. Not only does it look pretty cool, but it gives some insight into the processing Crocodoc is doing on each document that we convert to HTML.</p>
+
+<p>For the purposes of this blog post, I broke the demo down into three steps: building a basic proof of concept (without SVG), getting it to work in our target browsers, and finally, adding the SVG layers.</p>
+
+<p><em>Just want to play with some code? Fork the <a href="https://github.com/crocodoc/3d-demo">3d-demo repo</a>!</em></p>
+
+<p><strong>Step One: Proof of Concept</strong></p>
+
+<p>When starting the Preview project, the first step was to create a proof-of-concept for the 3D demo. The project needed to work on the target browsers (IE 9+, Firefox, WebKit, and most mobile browsers). I have worked with CSS 3D transforms in the past, but not to the extent that this project required, so it was time to do a bit of research! The WebKitCSSMatrix class that I discovered seemed like a good place to start. Fortunately, the proof-of-concept demo was actually quite simple to build using the WebKitCSSMatrix class. Let’s take a look at some code!</p>
+
+<p><strong><em>The Page</em></strong></p>
+
+<p>The Page class inserts layer divs into a jQuery-wrapped container element, and exposes a rotate(dx, dy, dz) method, which rotates the page in 3D space. Each layer div is positioned LAYER_SPACING apart on the z axis. From here, it’s easy to take it a step further, and add mouse/touch controls for rotating the page.</p>
+
+<h5><a href="http://web.crocodoc.com/blog-demos/demo1.html">Demo #1: The Page</a></h5>
+
+<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo1.html"></iframe></p>
+
+
+<p><div><script src='https://gist.github.com/5251877.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+   </p>
+
+<p><strong><em>Adding Transitions</em></strong></p>
+
+<p>In browsers that support CSS transitions, adding transitions is very simple, and done almost entirely in CSS. The JavaScript changes are mainly adding and removing CSS classes. We can also add a nice implode/explode effect.</p>
+
+<h5><a href="http://web.crocodoc.com/blog-demos/demo2.html">Demo #2: Transitions</a></h5>
+
+<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo2.html"></iframe></p>
+
+
+<p><div><script src='https://gist.github.com/5251958.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+  </p>
+
+<p><strong>Step Two: Browser Support</strong></p>
+
+<p>Awesome, we have a working, nice-looking proof-of-concept! Now, how do we get it to work on all browsers? It turns out, currently the only two implementations of W3C CSSMatrix interface (<a href="http://dev.w3.org/csswg/css3-2d-transforms/#cssmatrix-interface">2D</a> and <a href="http://dev.w3.org/csswg/css3-3d-transforms/#cssmatrix-interface">3D</a>) are <a href="http://developer.apple.com/library/safari/#documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html" title="WebKitCSSMatrix Class Reference">WebKitCSSMatrix</a> (supported by at least Chrome, Safari, iOS, and Android) and <a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh453593.aspx" title="MSCSSMatrix Class Reference">MSCSSMatrix</a> (IE 10 only). What now? Some googling lead me to a <a href="https://github.com/arian/CSSMatrix">CSSMatrix shim</a>, which looked promising, so I gave it a go. Unfortunately, the shim was actually broken when I found it, but hey–a chance to contribute to a useful open-source project? Sign me up! Long story short, after several hours of poring through <a href="http://en.wikipedia.org/wiki/Rotation_matrix">Wikipedia articles</a> and even the <a href="http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp">WebKit source</a>, I finally got it working properly (for a browser-ready version to play with, check out the <a href="https://github.com/camupod/CSSMatrix/tree/browserified">browserified branch</a> and add CSSMatrix.js to your page).</p>
+
+<h5>CSSMatrix Example</h5>
+
+<p><div><script src='https://gist.github.com/5257218.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+   </p>
+
+<p>With Firefox support handled, it’s time to tackle IE 9. Even though IE 9 can’t render matrix3d values in CSS, we can compute them in JavaScript and truncate a few numbers… which is exactly what we did. And it looks way better than you might expect! Check out the demo below to compare how it looks in IE 9 (which we’ll call affine mode) vs proper 3D mode.</p>
+
+<h5><a href="http://web.crocodoc.com/blog-demos/demo3.html">Demo #3: Affine Mode</a></h5>
+
+<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo3.html"></iframe></p>
+
+
+<p><em>(NOTE: can’t tell the difference between the two modes? you’re probably using IE 9. No? It’s also possible that hardware acceleration is disabled on your machine, which you can check in <strong>chrome://gpu/.</strong>)</em>
+<div><script src='https://gist.github.com/5252004.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+   </p>
+
+<p>IE 9 also doesn’t support CSS transitions, but I’m not going to go into detail about how we did that, because there are already a lot of jQuery plugins out there that make it pretty seamless. (Here are a few places to start: <a href="https://github.com/louisremi/jquery.transition.js">jQuery.transition.js</a>, <a href="https://github.com/benbarnett/jQuery-Animate-Enhanced">jQuery-Animate-Enhanced</a>.)</p>
+
+<p>Now that the demo works well in all the browsers we’re targeting, we can just throw in the SVG file and we’re done! Right? Well, not exactly.
+   </p>
+
+<p><strong>Step Three: Make it Work with SVG</strong></p>
+
+<p>After a bit of (failed) experimenting, I realized that, out of the box, SVG does not support CSS transforms with perspective. My solution was to load the SVG with AJAX (really CORS from AWS S3, which required yet <a href="https://gist.github.com/camupod/5252086">another IE shim</a>, and a cache-related hack for Chrome), fix linked assets (Crocodoc SVG links to assets relatively), apply a filter to split the SVG into several distinct SVG objects, and embed each object using HTML5 Inline SVG in a separate div elements. Voila, we have our layers!</p>
+
+<h5><a href="http://web.crocodoc.com/blog-demos/demo4.html">Demo #4: SVG Layers</a></h5>
+
+<p><iframe class="demo" src="http://web.crocodoc.com/blog-demos/demo4.html"></iframe></p>
+
+
+<p><div><script src='https://gist.github.com/5252136.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+   </p>
+
+<p>Since the SVG is now contained in HTML elements, we can apply CSS 3D transforms to the containers, and everything works swimmingly. Except in IE 9. Yep, IE 9 supports inline SVG, but it doesn’t support document.importNode(), which is necessary for creating the inline SVG in the first place. I found a <a href="http://stackoverflow.com/a/9883539/494954">nice shim</a>, which I <a href="https://gist.github.com/camupod/5165619#file-importnode-js">modified slightly</a>, because it was producing <a href="http://stackoverflow.com/questions/14593520/ie9-importing-inline-svg-image-elements-broken">some issues</a> with namespaced attributes.</p>
+
+<p>If you’re interested, also check out demos <a href="http://web.crocodoc.com/blog-demos/demo5.html">5</a>, <a href="http://web.crocodoc.com/blog-demos/demo6.html">6</a>, and <a href="http://web.crocodoc.com/blog-demos/demo7.html">7</a> (warning, you might need a fast machine).</p>
+
+<p><em>Note: I also ran into some very troubling issues with Firefox.  Rotating the 3D demo would reproducibly cause a kernel panic on my MBP (Retina, Mid 2012). I unfortunately haven’t been able to create a reduced test case for this, but I’ll be sure to post about it when I do. It has something to do with applying 3D transforms to elements (possibly specifically SVG) in a overflow:hidden container.</em>
+   </p>
+
+<h2>Wrap Up</h2>
+
+<p>It’s true that SVG is still in its infancy in HTML, but I think our preview page alone proves that it’s already possible to do some incredible stuff. I hope this post inspires some great applications built on the new Crocodoc.</p>
+
+<p>In my next post, I’ll explain the other demos on our preview page, as well as a few other issues we ran into.</p>
+]]></content>
+  </entry>
+  
+</feed>

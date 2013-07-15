@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Cameron Lakenen</title>
+  <title>3D-ifying Documents Using CSS Transforms - Cameron Lakenen</title>
   <meta name="author" content="Cameron Lakenen">
 
   
-  <meta name="description" content="I went to NodeConf last week, and I wanted to share what I learned! This post is basically a brain dump of what I remember from each session and my &hellip;">
+  <meta name="description" content="This article was originally posted on the Crocodoc blog. I am reposting here for posterity. We recently launched a preview of Crocodoc’s newest &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.lakenen.com">
+  <link rel="canonical" href="http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Cameron Lakenen" type="application/atom+xml">
@@ -73,173 +73,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2013/07/05/node-mans-land/">Node Man&#8217;s Land</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-05T09:00:00-07:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I went to NodeConf last week, and I wanted to share what I learned! This post is basically a brain dump of what I remember from each session and my overall impression of the conference.</p>
-
-<p>But first, a little about the structure of NodeConf. When we arrived, everyone received a <a href="http://i.imgur.com/GRoK0hw.png">map of the camp</a> and a randomly chosen, unique <a href="http://i.imgur.com/28Ar19l.jpg">schedule</a> of times with numbers that correspond to locations on the map. The idea was that for each time slot, you’d go to the session indicated by the number on your schedule. In each session, there were about 30 attendees and 2-3 presenters. The sessions were very interactive; almost all of them included coding workshops of some sort. Each session only lasted 50-55 minutes, but considering the amount of information covered, I found them amazingly rewarding and useful.</p>
-
-<p>Read more about the format of NodeConf on the <a href="https://github.com/mikeal/nodeconf2013#format">github repo</a>.</p>
-
-<h2>Sessions</h2>
-
-<br/>
-
-
-<p><strong>Contributing to Node Core</strong> (<a href="https://twitter.com/izs">@izs</a>, <a href="https://twitter.com/piscisaureus">@piscisaureus</a>)</p>
-
-<p>In this session, Isaac explained that you don’t have to be a superstar C++ or low level OS developer to contribute to node. He went over how to write good tests and a very brief overview of node’s structure. We also learned how to add methods to core node modules using C++ bindings and how to expose them in JS.</p>
-
-<p>My <a href="https://github.com/camupod/node/commit/41d028b2bc7184af10de5ae3087dfc311e99e068">commit</a> from the workshop:</p>
-
-<ul>
-<li>added simple hello world C++ binding to net module, including a simple test case (see: lib/net.js, test/simple/test-net-hello-world.js, src/tcp_wrap.cc, src/tcp_wrap.h)</li>
-<li>added json method (with pretty print) to responses in http module (see: lib/_http_outgoing.js)</li>
-</ul>
-
-
-<p><em>Takeaway: it’s super easy to contribute to node core! Do it!</em></p>
-
-<br/>
-
-
-<p><strong>Web Services</strong> (<a href="https://twitter.com/eranhammer">@eranhammer</a>, <a href="https://twitter.com/mcantelon">@mcantelon</a>)</p>
-
-<p>From what I gathered, the web services talk seemed basically like a comparison of hapi.js and express.js, two popular node web frameworks. It started out with a brief overview of web services in node, then continued on about how to use express and hapi and the differences between them. There was not too much of an interactive portion to this talk, though we were provided some data and code samples to play around with on our own time.</p>
-
-<p><em>Takeaway: express offers a very general framework with a lot of 3rd party middleware available, where hapi is more opinionated and offers more built in stuff. Basic node can do web, but frameworks are more powerful.</em></p>
-
-<br/>
-
-
-<p><strong>Stream Adventure!</strong> (<a href="https://twitter.com/substack">@substack</a>, <a href="https://twitter.com/maxogden">@maxogden</a>)</p>
-
-<p>In the streams session, we played* an awesome <a href="https://npmjs.org/package/stream-adventure">stream-adventure</a> game* created by <a href="https://twitter.com/substack">@substack</a>, which taught us a ton about how streams work, various use cases, and different modules that work really well with and implement streams. You should play* it! This was one of my favorite sessions.</p>
-
-<p><sup>*term used loosely</sup></p>
-
-<p><em>Takeaway: streams are awesome and we should use them for everything always.</em></p>
-
-<br/>
-
-
-<p><strong>Distributed Chat</strong> (<a href="https://twitter.com/Raynos">@raynos</a>, <a href="https://twitter.com/dominictarr">@dominictarr</a>)</p>
-
-<p>In this session, we built a distributed chat system where every client is also a server. We incrementally added functionality throughout the session (you can find the steps here: <a href="https://github.com/Raynos/distributed">https://github.com/Raynos/distributed</a>). The session was awesome, but went very fast, so it was a little hard to follow. If you find this topic interesting, you should also check out Dominic Tarr’s <a href="https://github.com/dominictarr/scuttlebutt">scuttlebutt</a> module.</p>
-
-<p><em>Takeaway: holy crap, this is cool!</em></p>
-
-<br/>
-
-
-<p><strong>Domains</strong> (<a href="https://twitter.com/domenic">@domenic</a>, <a href="https://twitter.com/othiym23">@othiym23</a>)</p>
-
-<p>In the domains session, we implemented domains for various types of (crashy) servers. If I understood everything correctly, this is how we used domains:</p>
-
-<ul>
-<li>a simple http server that crashes at various endpoints, which are each wrapped in a domain</li>
-<li>domainified express middleware that uses the default error handler where the domain runs at the beginning of middleware chain, which basically wraps all requests in a domain</li>
-<li>domains are created explicitly in each route, then middleware (to be placed at the end of the middleware chain) is used as a wrapper around the express error handler, which emits errors to the active domain if it exists</li>
-<li>proof of work server with domains&hellip; this one kinda lost me ¯\<em>(ツ)</em>/¯</li>
-</ul>
-
-
-<p>There was a bit about domain.intercept() as well, which is used to reduce boilerplate error passing in callbacks. One <em>very </em>important thing to note about domains: <a href="http://nodejs.org/api/domain.html#domain_warning_don_t_ignore_errors">don’t ignore errors</a>. Errors can leave the process in an undefined state, so it’s better to use domains to capture the error for the users’ benefit (eg. send a useful error message or do a graceful shutdown), and then restart the app.</p>
-
-<p><em>Takeaway: domains are like try/catch that works in async environments and we should use them&hellip; carefully.</em></p>
-
-<br/>
-
-
-<p><strong>Node Bots</strong> (<a href="https://twitter.com/rwaldron">@rwaldron</a>, <a href="https://twitter.com/rockbot">@rockbot</a>, <a href="https://twitter.com/tmpvar">@tmpvar</a>)</p>
-
-<p>This session was basically like: &ldquo;here is a bunch of awesome robot hardware&hellip; go build something.&rdquo; I built a&hellip; ravebot? It was basically a multi-color LED that pulsed various colors at different intervals. <em>Cut me some slack, it was dark in the room, and I don’t know how to breadboard! </em>Man I could have so much fun with this stuff. I have an Arduino from JSConf&hellip; time to go shopping for parts!</p>
-
-<p><em>Takeaway: you can use node to (really, ridiculously easily) control an Arduino!</em></p>
-
-<br/>
-
-
-<p><strong>Node Copters</strong> (<a href="https://twitter.com/nexxylove">@nexxylove</a>, <a href="https://twitter.com/s5fs">@s5fs</a>)</p>
-
-<p>The node copters session was very similar to the node bots session: make it do something cool. I attempted to build a browser-based controller and realtime video feed with web sockets, but didn’t have enough time (it looks like at least one person beat me to it anyways: <a href="https://github.com/functino/drone-browser">https://github.com/functino/drone-browser</a>). I’m going to explore this a little more with the two AR Drones we have from the Crocodoc office.</p>
-
-<p>Side note: <a href="https://twitter.com/jonmarkgo">@jonmarkgo</a> and <a href="https://twitter.com/SwiftAlphaOne">@swiftalphaone</a> were somehow able to create a tool that takes over all drones in wifi range. It was amazing, and you should watch it right now: <a href="https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV">https://www.dropbox.com/s/onsiqfxk8n12qvv/dronevirus.MOV</a>.</p>
-
-<p><em>Takeaway: what’s next, node boats?</em></p>
-
-<br/>
-
-
-<p><strong>DTracing Node</strong> (<a href="https://twitter.com/mrbruning">@mrbruning</a>)</p>
-
-<p>In this session we learned about using DTrace with your node apps. DTrace is a dynamic tracing framework intended to be used in (and not interfere with) production environments. We connected to a SmartOS VM and ran DTrace against various running apps. The session was a bit over my head and complicated, but I think it could be very useful when debugging performance issues in production node apps.</p>
-
-<p><em>Takeaway: you can’t use it on linux&hellip;</em></p>
-
-<h2>Materials</h2>
-
-<p>If you want to download the session materials and try stuff out, here’s the instructions:</p>
-
-<ol>
-<li>install the latest stable (0.10.x) release of node.js from <a href="http://www.nodejs.org/">http://www.nodejs.org/</a></li>
-<li>npm install nodeconf2013</li>
-<li>login to GitHub and fork <a href="https://github.com/joyent/node">https://github.com/joyent/node</a> and follow the instructions to clone it locally</li>
-<li>verify that you can build node locally by running  ./configure &amp;&amp; make</li>
-</ol>
-
-
-<p>Hopefully some of this will be useful to someone. Please feel free to contact me with questions, but I definitely encourage you to contact the presenters directly–they are very helpful!</p>
-
-<h2>Everything Else</h2>
-
-<p>Aside from an amazing lineup of presenters, there was a lot of other things about NodeConf that made it a very special experience. The remote and beautiful location, Walker Creek Ranch in Marin County, CA was the perfect place for a bunch of developers to get together for a few days and geek out. I stayed in a bunkhouse with several other developers, ate great food (not the mediocre camp food I remember from summer camp as a child), went hiking in the hills and swimming in the pond, and enjoyed great craft beer, music, star gazing, and conversation with the other campers in the evenings. After the evening annoucements and presentations, we even got to hear some amazing original songs by Paul Campbell (<a href="http://vimeo.com/69667425">http://vimeo.com/69667425</a>).</p>
-
-<p>I loved the fact that I didn’t know what session I was going to next and how small and interactive the sessions were. The structure of the sessions made it easier to socialize and collaborate, offering everyone a chance to come out of their cabins and tents.</p>
-
-<p>Overall, I really enjoyed the conference, and I hope other conferences follow NodeConf’s lead. I think I learned more, coded more, met more awesome people, and had more fun at NodeConf than any other conference I’ve been to in the past. Huge thanks to <a href="https://twitter.com/mikeal">@mikeal</a> for putting on such an amazing conference!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/03/26/3d-ifying-documents-using-css-transforms/">3D-ifying Documents Using CSS Transforms</a></h1>
+      <h1 class="entry-title">3D-ifying Documents Using CSS Transforms</h1>
     
     
       <p class="meta">
@@ -262,7 +101,7 @@
   </header>
 
 
-  <div class="entry-content"><p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms">Crocodoc blog</a>. I am reposting here for posterity.</strong></p>
+<div class="entry-content"><p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms">Crocodoc blog</a>. I am reposting here for posterity.</strong></p>
 
 <p>We recently launched a preview of Crocodoc’s newest document to HTML converter. If you haven’t checked it out yet, go play with our <a href="http://preview.crocodoc.com/">preview</a> and see how we’re converting the pages of your documents to embeddable SVG and HTML.</p>
 
@@ -374,23 +213,70 @@
 
 <p>In my next post, I’ll explain the other demos on our preview page, as well as a few other issues we ran into.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Cameron Lakenen</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2013-03-26T15:31:00-07:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/categories/3d/'>3d</a>, <a class='category' href='/categories/html/'>HTML</a>, <a class='category' href='/categories/svg/'>SVG</a>, <a class='category' href='/categories/crocodoc/'>crocodoc</a>, <a class='category' href='/categories/css/'>css</a>, <a class='category' href='/categories/demos/'>demos</a>, <a class='category' href='/categories/experiments/'>experiments</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/" data-via="lakenen" data-counturl="http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/2013/07/05/node-mans-land/" title="Next Post: Node Man's Land">Node Man's Land &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
   <h1>About Me</h1>
-  <p>I&#8217;m a front-end engineer living in San Francisco. I &lt;3 JavaScript, craft beer, and the great outdoors.</p>
+  <p>I'm a front-end engineer living in San Francisco. I &lt;3 JavaScript, craft beer, and the great outdoors.</p>
 </section>
 <section>
   <h1>Find Me</h1>
@@ -413,7 +299,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2013/07/05/node-mans-land/">Node Man&#8217;s Land</a>
+        <a href="/2013/07/05/node-mans-land/">Node Man's Land</a>
       </li>
     
       <li class="post">
@@ -427,7 +313,7 @@
   
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -458,6 +344,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -472,7 +359,10 @@
       var disqus_shortname = 'lakenen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/';
+        var disqus_url = 'http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
