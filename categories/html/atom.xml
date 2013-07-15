@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML | Cameron Lakenen]]></title>
   <link href="http://blog.lakenen.com/categories/html/atom.xml" rel="self"/>
   <link href="http://blog.lakenen.com/"/>
-  <updated>2013-07-15T11:10:19-07:00</updated>
+  <updated>2013-07-15T11:26:57-07:00</updated>
   <id>http://blog.lakenen.com/</id>
   <author>
     <name><![CDATA[Cameron Lakenen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms/"/>
     <updated>2013-03-26T15:31:00-07:00</updated>
     <id>http://blog.lakenen.com/2013/03/26/3d-ifying-documents-using-css-transforms</id>
-    <content type="html"><![CDATA[<p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms">Crocodoc blog</a>. I am reposting here for posterity.</strong></p>
+    <content type="html"><![CDATA[<p><strong>This article was originally posted on the <a href="http://blog.crocodoc.com/post/46369766700/3d-ifying-documents-using-css-transforms">Crocodoc blog</a>. I am reposting here for persistence.</strong></p>
 
 <p>We recently launched a preview of Crocodoc’s newest document to HTML converter. If you haven’t checked it out yet, go play with our <a href="http://preview.crocodoc.com/">preview</a> and see how we’re converting the pages of your documents to embeddable SVG and HTML.</p>
 
